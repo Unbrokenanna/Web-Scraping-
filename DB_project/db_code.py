@@ -32,4 +32,23 @@ query_statement = f"SELECT COUNT(*) FROM {table_name}"
 query_output = pd.read_sql(query_statement, conn)
 print(query_statement)
 print(query_output)
+
+table_name = 'DEPARTMENTS'
+attribute_list = ['DEPT_ID', 'DEPT_NAME', 'MANAGER_ID', 'LOC_ID']
+file_path = '/home/project/DB_project/Departments.csv'
+df = pd.read_csv(file_path, names = attribute_list)
+df.to_sql(table_name, conn, if_exists = 'replace', index =False)
+print('Table is ready')
+query_statement = f"SELECT * FROM {table_name}"
+query_output = pd.read_sql(query_statement, conn)
+print(query_statement)
+print(query_output)
+query_statement = f"SELECT DEPT_NAME FROM {table_name}"
+query_output = pd.read_sql(query_statement, conn)
+print(query_statement)
+print(query_output)
+query_statement = f"SELECT COUNT(*) FROM {table_name}"
+query_output = pd.read_sql(query_statement, conn)
+print(query_statement)
+print(query_output)
 conn.close()
